@@ -7,7 +7,9 @@ describe("mdLinks", () => {
 });
 
 describe("mdLinks", () => {
-  it("deberia retornar una promesa", () => {
-    expect()
+  it("debe rechazar cuando la ruta no existe", () => {
+    return mdLinks("rutaFalsa/archivoFalso.md").catch((error) => {
+      expect(error).toBe("La ruta no existe");
+    });
   });
 });
