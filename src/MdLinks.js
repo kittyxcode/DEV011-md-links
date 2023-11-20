@@ -6,6 +6,13 @@ const mdLinks = (filePath, options) => {
     //verificar que la ruta existe
     //sino existe la ruta rechaza la promesa
     if (fs.existsSync(filePath)) {
+      //convertir a ruta absoluta
+      
+
+      //probar si ruta absoluta es archivo o directorio
+      //si es un directorio filtrar archivos .md
+      //si es un archivo extraer array de links
+
     } else {
       reject("La ruta no existe");
     }
