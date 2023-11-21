@@ -20,3 +20,11 @@ describe("mdLinks", () => {
   });
 });
 
+describe("mdLinks", () => {
+  it("debe rechazar cuando la extension es incorrecta", () => {
+    return mdLinks("/Users/kathzy/Documents/Codes/DEV011-md-links/src/fileTest.js").catch((error) => {
+      expect(error).toBe("la extension no es correcta");
+    });
+  });
+});
+
