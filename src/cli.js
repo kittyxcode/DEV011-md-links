@@ -2,8 +2,10 @@
 
 const mdLinks = require("./mdLinks");
 
-mdLinks("/rutaFalsa/archivoFalso")
-  .then(() => {})
+mdLinks("/Users/kathzy/Documents/Codes/DEV011-md-links/src/fileTest.md")
+  .then((links) => {
+    console.log("Enlaces encontrados:", links);
+  })
   .catch((error) => {
     console.log(error);
   });

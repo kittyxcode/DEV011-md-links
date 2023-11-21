@@ -14,5 +14,8 @@
   },
   "scripts": {
     "test": "jest --coverage --verbose"
+  },
+  "dependencies": {
+    "marked": "^10.0.0"
   }
 }
