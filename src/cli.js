@@ -2,7 +2,7 @@
 
 const mdLinks = require("./mdLinks");
 
-mdLinks("/Users/kathzy/Documents/Codes/DEV011-md-links/src/fileTest.md")
+mdLinks("/Users/kathzy/Documents/Codes/DEV011-md-links/test/fileTest.md")
   .then((links) => {
     console.log("Enlaces encontrados:", links);
   })
