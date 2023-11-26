@@ -1,7 +1,5 @@
-const fs = require("fs"); //file system de node
-const path = require("path"); // para verificar rutas
 const marked = require("marked").parse; //para encontrar links
-const functionsPath = require("./functionsPaths");
+const functionsPath = require("./functionsPaths");//funciones fs y path
 
 // crear función mdLinks
 const mdLinks = (filePath, validate) => {
@@ -15,7 +13,7 @@ const mdLinks = (filePath, validate) => {
       //verifica si la ruta es absoluta
       if (!functionsPath.isAbsolute(filePath)) {
         console.log("La ruta no es absoluta, convirtiendo a absoluta");
-        filePath = path.resolve(filePath);
+        filePath = functionsPath.resolve(filePath);
       }
 
       //verifica extensiones del archivo
