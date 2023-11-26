@@ -14,7 +14,7 @@ let extensiones = [
 ];
 
 // crear función mdLinks
-const mdLinks = (filePath, options) => {
+const mdLinks = (filePath, validate) => {
   return new Promise((resolve, reject) => {
     console.log("Inicio de la función mdLinks");
 
