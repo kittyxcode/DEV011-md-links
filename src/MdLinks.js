@@ -1,17 +1,7 @@
-const fs = require("fs");//file system de node
-const path = require("path");// para verificar rutas
-const marked = require('marked').parse; //para encontrar links
-
-let extensiones = [
-  ".md",
-  ".mkd",
-  ".mdwn",
-  ".mdown",
-  ".mdtxt",
-  ".mdtext",
-  ".markdown",
-  ".text",
-];
+const fs = require("fs"); //file system de node
+const path = require("path"); // para verificar rutas
+const marked = require("marked").parse; //para encontrar links
+const functionsPath = require("./functionsPaths");
 
 // crear función mdLinks
 const mdLinks = (filePath, validate) => {
@@ -19,17 +9,17 @@ const mdLinks = (filePath, validate) => {
     console.log("Inicio de la función mdLinks");
 
     //verifica si la ruta existe
-    if (fs.existsSync(filePath)) {
+    if (functionsPath.existsPath(filePath)) {
       console.log("La ruta existe");
 
       //verifica si la ruta es absoluta
-      if (!path.isAbsolute(filePath)) {
+      if (!functionsPath.isAbsolute(filePath)) {
         console.log("La ruta no es absoluta, convirtiendo a absoluta");
         filePath = path.resolve(filePath);
       }
 
       //verifica extensiones del archivo
-      if (extensiones.includes(path.extname(filePath))) {
+      if (functionsPath.extensionValidate(filePath)) {
         console.log("La extensión es correcta");
 
         //lee archivo .md
@@ -37,7 +27,6 @@ const mdLinks = (filePath, validate) => {
 
         //imprimo el contenido, esto lo tengo que comentar...
         console.log("Contenido del archivo:", content);
-
 
         //crear array e ir guardando los enlaces encontrados
         const links = [];
@@ -62,6 +51,3 @@ const mdLinks = (filePath, validate) => {
 };
 
 module.exports = mdLinks;
-
-
-

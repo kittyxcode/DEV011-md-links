@@ -1,4 +1,5 @@
-const fs = require("fs"); //file system de node
+const fs = require("fs");
+const path = require("path"); //file system de node
 
 //Esta archivo es para tener funciones para usar en mdLinks
 
@@ -9,12 +10,12 @@ const existsPath = (filePath) => {
 
 //retorna true si la ruta es absoluta y false sino
 const isAbsolute = (filePath) => {
-  return fs.isAbsolute(filePath);
+  return path.isAbsolute(filePath);
 };
 
 //retorna true si coincide con alguna de las extensiones, sino false
 const extensionValidate = (filePath) => {
-  const extensiones = [
+  const extensions = [
     ".md",
     ".mkd",
     ".mdwn",
@@ -24,7 +25,7 @@ const extensionValidate = (filePath) => {
     ".markdown",
     ".text",
   ];
-  return extensiones.includes(path.extname(filePath));
+  return extensions.includes(path.extname(filePath));
 };
 
 module.exports = {
