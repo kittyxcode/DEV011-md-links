@@ -1,5 +1,6 @@
 const fs = require("fs"); //file system de node
 const path = require("path"); // para verificar rutas
+const marked = require("marked").parse;
 
 //Esta archivo es para tener funciones para usar en mdLinks
 
@@ -43,10 +44,39 @@ const readFile = (filePath) => {
   }
 };
 
+/* extrae los links, 
+si el validate es true retorna:
+    href: URL encontrada.
+    text: Texto que aparecía dentro del link.
+    file: Ruta del archivo donde se encontró el link.
+    status: Código de respuesta HTTP.
+    ok: Mensaje fail en caso de fallo u ok en caso de éxito. 
+si es false o undefined
+    href: URL encontrada.
+    text: Texto que aparecía dentro del link (<a>).
+    file: Ruta del archivo donde se encontró el link.  */
+const extractLinks = (filePath, validate) => {
+    if (!validate) {
+        const content = readFile(filePath);
+        const links = [];
+        const renderer = new marked.Renderer();
+        renderer.link = (href, title, text) => {
+          links.push({ href, text, title });
+        };
+        marked(content, { renderer });
+        return links;
+    }
+    else{
+        return false;
+    }
+
+};
+
 module.exports = {
   existsPath,
   isAbsolute,
   resolve,
   extensionValidate,
   readFile,
+  extractLinks
 };

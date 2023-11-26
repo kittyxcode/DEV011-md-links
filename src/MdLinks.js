@@ -26,7 +26,7 @@ const mdLinks = (filePath, validate) => {
         //imprimo el contenido, esto lo tengo que comentar...
         console.log("Contenido del archivo:", content);
 
-        //crear array e ir guardando los enlaces encontrados
+        /* //crear array e ir guardando los enlaces encontrados
         const links = [];
         const renderer = new marked.Renderer();
         renderer.link = (href, title, text) => {
@@ -35,8 +35,8 @@ const mdLinks = (filePath, validate) => {
 
         // utilizar específicamente el método parse de marked
         const htmlContent = marked(content, { renderer });
-        //console.log("Contenido HTML:", htmlContent);
-        resolve(links);
+        //console.log("Contenido HTML:", htmlContent); */
+        resolve(functionsPath.extractLinks(filePath, validate));
       } else {
         console.log("La extensión no es correcta");
         reject("la extension no es correcta");
