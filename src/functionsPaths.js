@@ -67,7 +67,14 @@ const extractLinks = (filePath, validate) => {
         return links;
     }
     else{
-        return false;
+        const content = readFile(filePath);
+        const links = [];
+        const renderer = new marked.Renderer();
+        renderer.link = (href, title, text, status, ok) => {
+          links.push({ href, text, title, status, ok });
+        };
+        marked(content, { renderer });
+        return links;
     }
 
 };
