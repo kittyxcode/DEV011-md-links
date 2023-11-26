@@ -23,7 +23,7 @@ const mdLinks = (filePath, validate) => {
         console.log("La extensión es correcta");
 
         //lee archivo .md
-        const content = fs.readFileSync(filePath, "utf8");
+        const content = functionsPath.readFile(filePath);
 
         //imprimo el contenido, esto lo tengo que comentar...
         console.log("Contenido del archivo:", content);

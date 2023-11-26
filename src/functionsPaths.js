@@ -28,8 +28,18 @@ const extensionValidate = (filePath) => {
   return extensions.includes(path.extname(filePath));
 };
 
+const readFile = (filePath) => {
+  try {
+    const content = fs.readFileSync(filePath, "utf8");
+    return content;
+  } catch (error) {
+    console.error(`Error al leer el archivo: ${error.message}`);
+  }
+};
+
 module.exports = {
   existsPath,
   isAbsolute,
-  extensionValidate
+  extensionValidate,
+  readFile
 };
