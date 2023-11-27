@@ -5,15 +5,16 @@ const validateUrl = (url) => {
     fetch(url)
       .then((response) => {
         if (response.ok) {
-          resolve(response.status); // resuelve con el código de estado si es exitoso
+          resolve(response.status);
         } else {
-          reject(response.status); // rechaza con el código de estado si no es exitoso
+          reject(response.status);
         }
       })
       .catch((error) => {
-        reject(error.message); // rechaza con el mensaje de error si hay un error en la solicitud
+        reject(error.message);
       });
   });
 };
 
 module.exports = { validateUrl };
+

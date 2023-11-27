@@ -1,7 +1,7 @@
 const fs = require("fs"); //file system de node
 const path = require("path"); // para verificar rutas
 const marked = require("marked").parse;
-const validate = require("./validate");
+const { validateUrl } = require("./validate");
 
 //Esta archivo es para tener funciones para usar en mdLinks
 
@@ -56,28 +56,39 @@ si es false o undefined
     href: URL encontrada.
     text: Texto que aparecía dentro del link (<a>).
     file: Ruta del archivo donde se encontró el link.  */
-const extractLinks = (filePath, validate) => {
-  if (!validate) {
-    const content = readFile(filePath);
-    const links = [];
-    const renderer = new marked.Renderer();
-    renderer.link = (href, title, text) => {
-      links.push({ href, text, title });
-    };
-    marked(content, { renderer });
-    return links;
-  } else {
-    const content = readFile(filePath);
-    const links = [];
-    const renderer = new marked.Renderer();
-    renderer.link = (href, title, text, status, ok) => {
-      status= validate.validateUrl(href);
-      links.push({ href, text, title, status, ok });
-    };
-    marked(content, { renderer });
-    return links;
-  }
-};
+    const extractLinks = async (filePath, validate) => {
+        const content = readFile(filePath);
+        const links = [];
+      
+        const renderer = new marked.Renderer();
+        renderer.link = (href, title, text) => {
+          links.push({ href, text, title });
+        };
+      
+        marked(content, { renderer });
+      
+        if (validate) {
+          for (const link of links) {
+            try {
+              const status = await validateUrl(link.href);
+              link.status = status;
+              link.ok = true;
+            } catch (error) {
+              console.error(`Error al validar URL ${link.href}: ${error}`);
+              link.status = error;
+              link.ok = false;
+            }
+          }
+        }
+      
+        console.log("Enlaces encontrados:", links);
+      
+        return links;
+      };
+      
+      
+      
+      
 
 module.exports = {
   existsPath,
