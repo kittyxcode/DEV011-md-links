@@ -36,7 +36,7 @@ const mdLinks = (filePath, validate) => {
         // utilizar específicamente el método parse de marked
         const htmlContent = marked(content, { renderer });
         //console.log("Contenido HTML:", htmlContent); */
-        resolve(functionsPath.extractLinks(filePath, false));
+        resolve(functionsPath.extractLinks(filePath, true));
       } else {
         console.log("La extensión no es correcta");
         reject("la extension no es correcta");
