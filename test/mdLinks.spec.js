@@ -1,11 +1,5 @@
 const mdLinks = require("../src/mdLinks");
 
-describe("mdLinks", () => {
-  it("should...", () => {
-    console.log("FIX ME!");
-  });
-});
-
 describe('mdLinks', () => {
   it('debe devolver una promesa', () => {
     expect(mdLinks('./test/fileTest.md')).toBeInstanceOf(Promise);

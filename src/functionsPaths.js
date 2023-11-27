@@ -74,14 +74,14 @@ const extractLinks = async (filePath, validate) => {
         link.status = status;
         link.ok = 'ok';
       } catch (error) {
-        console.error(`Error al validar URL ${link.href}: ${error}`);
+        //console.error(`Error al validar URL ${link.href}: ${error}`);
         link.status = error;
         link.ok = 'fail';
       }
     }
   }
 
-  console.log("Enlaces encontrados:", links);
+  //console.log("Enlaces encontrados:", links);
 
   return links;
 };
