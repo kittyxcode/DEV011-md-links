@@ -12,7 +12,10 @@ console.log("ruta: " + filePath);
 console.log("option: " + options);
 console.log("args: " + args);
 
-mdLinks("/Users/kathzy/Documents/Codes/DEV011-md-links/test/fileTest.md")
+const validate = args.includes("--validate") || args.includes("-v");
+
+
+mdLinks(filePath, validate)
   .then((links) => {
     console.log("Enlaces encontrados:", links);
   })
