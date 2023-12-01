@@ -2,7 +2,7 @@ const marked = require("marked").parse; //para encontrar links
 const functionsPath = require("./functionsPaths");//funciones fs y path
 
 // crear función mdLinks
-const mdLinks = (filePath, validate) => {
+const mdLinks = (filePath, validate, stats) => {
   return new Promise((resolve, reject) => {
     //console.log("Inicio de la función mdLinks");
 
@@ -24,7 +24,7 @@ const mdLinks = (filePath, validate) => {
         const content = functionsPath.readFile(filePath);
 
         //devolver array con datos segun correspondan
-        resolve(functionsPath.extractLinks(filePath, validate));
+        resolve(functionsPath.extractLinks(filePath, validate, stats));
       } else {
         //console.log("La extensión no es correcta");
         reject("la extension no es correcta");

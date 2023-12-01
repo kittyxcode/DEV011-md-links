@@ -13,9 +13,13 @@ console.log("option: " + options);
 console.log("args: " + args);
 
 const validate = args.includes("--validate") || args.includes("-v");
+const stats = args.includes("--stats") || args.includes("-s");
+
+//validate y stats son verdaderos
+//
 
 
-mdLinks(filePath, validate)
+mdLinks(filePath, validate, stats)
   .then((links) => {
     console.log("Enlaces encontrados:", links);
   })

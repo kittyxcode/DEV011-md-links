@@ -56,7 +56,7 @@ si es false o undefined
     href: URL encontrada.
     text: Texto que aparecía dentro del link (<a>).
     file: Ruta del archivo donde se encontró el link.  */
-const extractLinks = async (filePath, validate) => {
+const extractLinks = async (filePath, validate, stats) => {
   const content = readFile(filePath);
   const links = [];
 
@@ -67,18 +67,26 @@ const extractLinks = async (filePath, validate) => {
 
   marked(content, { renderer });
 
-  if (validate) {
-    for (const link of links) {
-      try {
-        const status = await validateUrl(link.href);
-        link.status = status;
-        link.ok = 'ok';
-      } catch (error) {
-        //console.error(`Error al validar URL ${link.href}: ${error}`);
-        link.status = error;
-        link.ok = 'fail';
+  if (validate || stats) {
+    if (validate && stats) {
+    } else {
+      if (validate) {
+        for (const link of links) {
+          try {
+            const status = await validateUrl(link.href);
+            link.status = status;
+            link.ok = "ok";
+          } catch (error) {
+            //console.error(`Error al validar URL ${link.href}: ${error}`);
+            link.status = error;
+            link.ok = "fail";
+          }
+        }
+      }
+      if (stats) {
       }
     }
+  } else {
   }
 
   //console.log("Enlaces encontrados:", links);
