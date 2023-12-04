@@ -24,7 +24,7 @@ const mdLinks = (filePath, validate, stats) => {
         const content = functionsPath.readFile(filePath);
 
         //devolver array con datos segun correspondan
-        resolve(functionsPath.extractLinks(filePath, validate, stats));
+        resolve(functionsPath.extractLinks(filePath, validate));
       } else {
         //console.log("La extensión no es correcta");
         reject("la extension no es correcta");

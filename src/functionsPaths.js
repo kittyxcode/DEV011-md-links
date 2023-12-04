@@ -56,7 +56,7 @@ si es false o undefined
     href: URL encontrada.
     text: Texto que aparecía dentro del link (<a>).
     file: Ruta del archivo donde se encontró el link.  */
-const extractLinks = async (filePath, validate, stats) => {
+const extractLinks = async (filePath, validate) => {
   const content = readFile(filePath);
   const links = [];
 
@@ -67,9 +67,7 @@ const extractLinks = async (filePath, validate, stats) => {
 
   marked(content, { renderer });
 
-  if (validate || stats) {
-    if (validate && stats) {
-    } else {
+  
       if (validate) {
         for (const link of links) {
           try {
@@ -83,11 +81,6 @@ const extractLinks = async (filePath, validate, stats) => {
           }
         }
       }
-      if (stats) {
-      }
-    }
-  } else {
-  }
 
   //console.log("Enlaces encontrados:", links);
 
