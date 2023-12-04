@@ -22,6 +22,7 @@ mdLinks(filePath, validate, stats)
   .then((result) => {
     //toda la logica de acuerdo a que reciba en result
     if (Array.isArray(result)) {
+      //ff
       console.log("Enlaces encontrados:", result);
     }
     if (typeof result === "object" && !Array.isArray(result)) {
