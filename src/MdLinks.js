@@ -1,5 +1,5 @@
 const marked = require("marked").parse; //para encontrar links
-const functionsPath = require("./functionsPaths");//funciones fs y path
+const functionsPath = require("./functionsPaths"); //funciones fs y path
 
 // crear función mdLinks
 const mdLinks = (filePath, validate, stats) => {
@@ -24,12 +24,20 @@ const mdLinks = (filePath, validate, stats) => {
         const content = functionsPath.readFile(filePath);
 
         //En esta parte hacer la ensalada de if??
-        
-        
-        
-        resolve(functionsPath.statsWithValidate(filePath));
+        if (!validate && !stats) {
+          resolve(functionsPath.extractLinks(filePath, validate));
+        }
+        if (validate && stats) {
+          resolve(functionsPath.statsWithValidate(filePath));
+        }
+        if (validate && !stats) {
+          resolve(functionsPath.extractLinks(filePath, validate));
+        }
+        if (!validate && stats) {
+          resolve(functionsPath.stats(filePath));
+        }
+
         //devolver array con datos segun correspondan
-        //resolve(functionsPath.extractLinks(filePath, validate));
       } else {
         //console.log("La extensión no es correcta");
         reject("la extension no es correcta");

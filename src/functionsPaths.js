@@ -87,7 +87,7 @@ const extractLinks = async (filePath, validate) => {
 };
 
 const statsWithValidate = async (filePath) => {
-  const links =  await extractLinks(filePath, true);
+  const links = await extractLinks(filePath, true);
   let countOk = 0;
   let countFail = 0;
   links.forEach((link) => {
@@ -99,8 +99,24 @@ const statsWithValidate = async (filePath) => {
   });
   const obj = {
     linksTotales: links.length,
-    countOk: countOk,
-    countFail: countFail,
+    linksOk: countOk,
+    Brockers: countFail,
+  };
+  return obj;
+};
+
+const stats = async (filePath) => {
+  const links = await extractLinks(filePath, true);
+  let countOk = 0;
+  let countFail = 0;
+  links.forEach((link) => {
+    if (link.ok === "ok") {
+      countOk++;
+    } 
+  });
+  const obj = {
+    linksTotales: links.length,
+    linksOk: countOk,
   };
   return obj;
 };
@@ -112,5 +128,6 @@ module.exports = {
   extensionValidate,
   readFile,
   extractLinks,
-  statsWithValidate
+  statsWithValidate,
+  stats,
 };
