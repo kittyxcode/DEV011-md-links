@@ -72,11 +72,11 @@ const extractLinks = async (filePath, validate) => {
       try {
         const status = await validateUrl(link.href);
         link.status = status;
-        link.ok = 'ok';
+        link.ok = "ok";
       } catch (error) {
         //console.error(`Error al validar URL ${link.href}: ${error}`);
         link.status = error;
-        link.ok = 'fail';
+        link.ok = "fail";
       }
     }
   }
@@ -86,6 +86,41 @@ const extractLinks = async (filePath, validate) => {
   return links;
 };
 
+const statsWithValidate = async (filePath) => {
+  const links = await extractLinks(filePath, true);
+  let countOk = 0;
+  let countFail = 0;
+  links.forEach((link) => {
+    if (link.ok === "ok") {
+      countOk++;
+    } else {
+      countFail++;
+    }
+  });
+  const obj = {
+    linksTotales: links.length,
+    linksOk: countOk,
+    brockers: countFail,
+  };
+  return obj;
+};
+
+const stats = async (filePath) => {
+  const links = await extractLinks(filePath, true);
+  let countOk = 0;
+  let countFail = 0;
+  links.forEach((link) => {
+    if (link.ok === "ok") {
+      countOk++;
+    } 
+  });
+  const obj = {
+    linksTotales: links.length,
+    linksOk: countOk,
+  };
+  return obj;
+};
+
 module.exports = {
   existsPath,
   isAbsolute,
@@ -93,4 +128,6 @@ module.exports = {
   extensionValidate,
   readFile,
   extractLinks,
+  statsWithValidate,
+  stats,
 };
