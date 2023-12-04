@@ -100,7 +100,7 @@ const statsWithValidate = async (filePath) => {
   const obj = {
     linksTotales: links.length,
     linksOk: countOk,
-    Brockers: countFail,
+    brockers: countFail,
   };
   return obj;
 };

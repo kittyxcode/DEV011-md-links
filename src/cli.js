@@ -18,10 +18,19 @@ const stats = args.includes("--stats") || args.includes("-s");
 //validate y stats son verdaderos
 //
 
-
 mdLinks(filePath, validate, stats)
-  .then((links) => {
-    console.log("Enlaces encontrados:", links);
+  .then((result) => {
+    //toda la logica de acuerdo a que reciba en result
+    if (Array.isArray(result)) {
+      console.log("Enlaces encontrados:", result);
+    }
+    if (typeof result === "object" && !Array.isArray(result)) {
+      console.log("links: " + result.linksTotales);
+      console.log("unique: " + result.linksOk);
+      if ("brockers" in result) {
+        console.log("brockers: " + result.brockers);
+      }
+    }
   })
   .catch((error) => {
     console.log(error);
