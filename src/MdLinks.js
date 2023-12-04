@@ -23,8 +23,13 @@ const mdLinks = (filePath, validate, stats) => {
         //lee archivo .md
         const content = functionsPath.readFile(filePath);
 
+        //En esta parte hacer la ensalada de if??
+        
+        
+        
+        resolve(functionsPath.statsWithValidate(filePath));
         //devolver array con datos segun correspondan
-        resolve(functionsPath.extractLinks(filePath, validate));
+        //resolve(functionsPath.extractLinks(filePath, validate));
       } else {
         //console.log("La extensión no es correcta");
         reject("la extension no es correcta");
